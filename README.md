@@ -17,9 +17,10 @@ npm install --save react-particle-image
 - [Demo](https://malerba118.github.io/react-particle-image-demo/) ([source](https://github.com/malerba118/react-particle-image-demo/blob/master/src/App.tsx))
 - [Docs](https://malerba118.github.io/react-particle-image/interfaces/_particleimage_particleimage_.particleimageprops.html)
 
-
 ## Simple Usage
+
 [codesandbox](https://codesandbox.io/s/react-particle-image-simple-ei97k)
+
 ```tsx
 import * as React from "react";
 import ParticleImage, { ParticleOptions } from "react-particle-image";
@@ -31,7 +32,7 @@ const particleOptions: ParticleOptions = {
     // Make a particle for this pixel if blue > 50 (range 0-255)
     return pixel.b > 50;
   },
-  color: ({ x, y, image }) => "#61dafb"
+  color: ({ x, y, image }) => "#61dafb",
 };
 
 export default function App() {
@@ -48,7 +49,9 @@ export default function App() {
 ```
 
 ## Complex Usage
- [codesandbox](https://codesandbox.io/s/react-particle-image-complex-pbzo9)
+
+[codesandbox](https://codesandbox.io/s/react-particle-image-complex-pbzo9)
+
 ```tsx
 import * as React from "react";
 import useWindowSize from "@rooks/use-window-size";
@@ -56,7 +59,7 @@ import ParticleImage, {
   ParticleOptions,
   Vector,
   forces,
-  ParticleForce
+  ParticleForce,
 } from "react-particle-image";
 import "./styles.css";
 
@@ -73,7 +76,7 @@ const particleOptions: ParticleOptions = {
   friction: () => 0.15,
   initialPosition: ({ canvasDimensions }) => {
     return new Vector(canvasDimensions.width / 2, canvasDimensions.height / 2);
-  }
+  },
 };
 
 const motionForce = (x: number, y: number): ParticleForce => {
@@ -101,14 +104,11 @@ export default function App() {
 ```
 
 ## Performance Tips
+
 `ParticleImage` has a target frame rate of 30fps, but with thousands of particles updating positions and repainting 30 times per second, performance can be a problem.
 
 If animations are choppy try:
+
 - Reducing the number of distinct particle colors (particles of the same color will be batched while painting)
 - Reducing the number of particles (less than 6000 is ideal)
 - Reducing the resolution of the src image.
-
-Here's a [codesandbox of a good boy](https://codesandbox.io/s/react-particle-image-multicolor-dp8up) to show what I mean. Note the `round` function to reduce the number of colors painted on the canvas.
-
-
-MIT © [malerba118](https://github.com/malerba118)
